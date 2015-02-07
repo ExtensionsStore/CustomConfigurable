@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * CustomConfigurable admin acl
+ *
+ * @category   Aydus
+ * @package    Aydus_CustomConfigurable
+ * @author     Aydus Consulting <davidt@aydus.com>
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <aydus_customconfigurable translate="title" module="aydus_customconfigurable">
+                                        <title>CustomConfigurable Settings</title>
+                                    </aydus_customconfigurable>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

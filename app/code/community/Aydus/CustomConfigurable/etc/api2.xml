@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CustomConfigurable api2 config
+ *
+ * @category   Aydus
+ * @package    Aydus_CustomConfigurable
+ * @author     Aydus Consulting <davidt@aydus.com>
+ */
+-->
+<config>
+    <api2>
+        <resource_groups>   
+            <customconfigurable translate="title" module="aydus_customconfigurable">
+                <title>Custom Case</title>
+                <sort_order>140</sort_order>
+                <children>
+                    <customconfigurable_option translate="title" module="aydus_customconfigurable">
+                        <title>Options</title>
+                        <sort_order>90</sort_order>
+                    </customconfigurable_option>           
+                    <customconfigurable_photo translate="title" module="aydus_customconfigurable">
+                        <title>Photo</title>
+                        <sort_order>100</sort_order>
+                    </customconfigurable_photo>                    
+                    <customconfigurable_quote translate="title" module="aydus_customconfigurable">
+                        <title>Quote</title>
+                        <sort_order>110</sort_order>
+                    </customconfigurable_quote>                    
+                </children>   
+            </customconfigurable>        
+        </resource_groups>
+        <resources> 
+            <customconfigurable_option>
+                <group>customconfigurable</group>
+                <model>aydus_customconfigurable/api2_option</model>
+                <working_model>aydus_customconfigurable/customconfigurable</working_model>
+                <title>Options</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <!-- Dynamically set from configurable custom options -->
+                <attributes translate="product attribute_option">
+                	<product>Product</product>
+                	<attribute_option>Attribute Option</attribute_option>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/customconfigurable/option/</route>
+                        <action_type>entity</action_type>
+                    </route_entity>        
+                    <route_entity_product>
+                        <route>/customconfigurable/option/:product</route>
+                        <action_type>entity</action_type>
+                    </route_entity_product>        
+                    <route_entity_product_option>
+                        <route>/customconfigurable/option/:product/:attribute_option</route>
+                        <action_type>entity</action_type>
+                    </route_entity_product_option>                                                   
+                </routes>
+                <versions>1</versions>                           
+            </customconfigurable_option>    
+            <customconfigurable_photo>
+                <group>customconfigurable</group>
+                <model>aydus_customconfigurable/api2_photo</model>
+                <working_model>aydus_customconfigurable/customconfigurable</working_model>
+                <title>Photo</title>
+                <sort_order>20</sort_order>
+                <privileges>
+                    <customer>
+                        <create>1</create>
+                    </customer>                
+                    <guest>
+                        <create>1</create>
+                    </guest>
+                </privileges> 
+                <attributes translate="product code filename data">
+                	<product>Product</product>
+                    <code>Code</code>
+                    <filename>File Name</filename>
+                    <data>Data</data>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/customconfigurable/photo/</route>
+                        <action_type>collection</action_type>
+                    </route_entity>
+                </routes>
+                <versions>1</versions>                           
+            </customconfigurable_photo>               
+            <customconfigurable_quote>
+                <group>customconfigurable</group>
+                <model>aydus_customconfigurable/api2_quote</model>
+                <working_model>aydus_customconfigurable/customconfigurable</working_model>
+                <title>Quote</title>
+                <sort_order>30</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                        <create>1</create>
+                    </customer>                
+                    <guest>
+                        <retrieve>1</retrieve>
+                        <create>1</create>
+                    </guest>
+                </privileges> 
+                <!-- Dynamically set from configurable custom options -->
+                <attributes translate="product attribute_option hash quote">
+                	<product>Product</product>
+                	<attribute_option>Attribute Option</attribute_option>
+                	<hash>Hash</hash>
+                	<quote>Quote</quote>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/customconfigurable/quote/</route>
+                        <action_type>collection</action_type>
+                    </route_entity>
+                    <route_entity_quote>
+                        <route>/customconfigurable/quote/:hash</route>
+                        <action_type>entity</action_type>
+                    </route_entity_quote>                      
+                </routes>
+                <versions>1</versions>                           
+            </customconfigurable_quote>  
+            <customconfigurable_order>
+                <group>customconfigurable</group>
+                <model>aydus_customconfigurable/api2_order</model>
+                <working_model>aydus_customconfigurable/customconfigurable</working_model>
+                <title>Order</title>
+                <sort_order>40</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                        <create>1</create>
+                    </customer>                
+                    <guest>
+                        <retrieve>1</retrieve>
+                        <create>1</create>
+                    </guest>
+                </privileges> 
+                <attributes translate="quote email billing shipping shipping_method payment_method hash increment_id status">
+                	<quote>Quote</quote>
+                	<email>Email</email>
+                	<billing>Billing Information</billing>
+                	<shipping>Shipping Information</shipping>
+                	<shipping_method>Shipping Method</shipping_method>
+                	<payment_method>Payment Method</payment_method>
+                	<hash>Hash</hash>
+                	<increment_id>Order Increment ID</increment_id>
+                	<status>Status</status>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/customconfigurable/order/</route>
+                        <action_type>collection</action_type>
+                    </route_entity>
+                    <route_entity_order>
+                        <route>/customconfigurable/order/:increment_id</route>
+                        <action_type>entity</action_type>
+                    </route_entity_order>                                          
+                </routes>
+                <versions>1</versions>                           
+            </customconfigurable_order>                             
+        </resources>
+    </api2>
+</config>

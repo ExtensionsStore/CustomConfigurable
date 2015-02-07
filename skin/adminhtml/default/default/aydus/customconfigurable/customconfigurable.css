@@ -1,0 +1,27 @@
+/**
+ * CustomConfigurable admin css
+ * 
+ * @category   Aydus
+ * @package    Aydus_CustomConfigurable
+ * @author     Aydus Consulting <davidt@aydus.com>
+ */
+
+@CHARSET "UTF-8";
+
+.custom-options .option-box .border 
+{
+    width: 800px;
+}
+
+.cc-option-image 
+{
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	display: none;
+}
+
+.cc-option-file {
+	display: none;
+}

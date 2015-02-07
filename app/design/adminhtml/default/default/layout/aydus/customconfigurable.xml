@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CustomConfigurable adminhtml layout
+ * 
+ * @category   Aydus
+ * @package    Aydus_CustomConfigurable
+ * @author     Aydus Consulting <davidt@aydus.com>
+ */
+-->
+<layout>
+
+    <adminhtml_catalog_product_edit>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><script>aydus/customconfigurable/customconfigurable.css</script></action>
+			<action method="addItem"><type>skin_js</type><script>aydus/customconfigurable/customconfigurable.js</script></action>
+		</reference>    
+    </adminhtml_catalog_product_edit>
+
+</layout>

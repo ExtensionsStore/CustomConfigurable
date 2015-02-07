@@ -1,0 +1,5 @@
+app/code/community/Aydus/CustomConfigurable/                                app/code/community/Aydus/CustomConfigurable/
+app/design/adminhtml/default/default/layout/aydus/customconfigurable.xml    app/design/adminhtml/default/default/layout/aydus/customconfigurable.xml
+app/design/adminhtml/default/default/template/aydus/customconfigurable/     app/design/adminhtml/default/default/template/aydus/customconfigurable/
+app/etc/modules/Aydus_CustomConfigurable.xml                                app/etc/modules/Aydus_CustomConfigurable.xml
+skin/adminhtml/default/default/aydus/customconfigurable/                    skin/adminhtml/default/default/aydus/customconfigurable/
