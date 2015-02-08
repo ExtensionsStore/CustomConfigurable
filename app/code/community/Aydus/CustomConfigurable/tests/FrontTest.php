@@ -19,7 +19,7 @@ class FrontTest extends PHPUnit_Framework_TestCase {
     public function setUp() 
     {
         $consumer = Mage::getModel('oauth/consumer');
-        $consumer->load('Custom Case API', 'name');
+        $consumer->load('Custom Configurable API', 'name');
         
         $this->_callbackUrl = $consumer->getCallbackUrl();
         
@@ -94,9 +94,14 @@ class FrontTest extends PHPUnit_Framework_TestCase {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
          
         $response = curl_exec($ch);     
-
-        $params = json_decode($response, true);
-                
+        
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
+        
+        
+        $params = json_decode($body, true);
+        
         curl_close($ch);
                          
         $gotLocation = (is_array($params) && isset($params['Location']) && $params['Location']) ? true : false;
@@ -145,19 +150,19 @@ class FrontTest extends PHPUnit_Framework_TestCase {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
              
             $response = curl_exec($ch);
-                    
-            $params = json_decode($response, true);
+            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            $header = substr($response, 0, $header_size);
+            $body = substr($response, $header_size);
+            
+            $params = json_decode($body, true);
             
             curl_close($ch);
              
             $gotLocation = (is_array($params) && isset($params['Location']) && $params['Location']) ? true : false;
                     
             $this->assertTrue($gotLocation);     
-                     
-            $hash = substr($location, strlen($url)+1);
-            $hash = substr($hash, 0, -1);
-            
-            $getQuoteUrl = $url.'/'.$hash;
+                                             
+            $getQuoteUrl = $params['Location'];
             
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $getQuoteUrl);
@@ -169,7 +174,6 @@ class FrontTest extends PHPUnit_Framework_TestCase {
             
             $params = json_decode($response, true);
             
-            $this->assertEquals($hash, $params['hash']);
             $quoteId = (int)$params['quote'];
             
             $gotQuote = ($quoteId > 0) ? true : false;
@@ -184,7 +188,7 @@ class FrontTest extends PHPUnit_Framework_TestCase {
     {
         if (self::$_quoteId){
         
-            $endpoint = 'api/rest/customconfigurable/order';
+            $endpoint = 'customconfigurable/index/order';
             $url = $this->_callbackUrl . $endpoint;
         
             $params = array(
@@ -213,7 +217,7 @@ class FrontTest extends PHPUnit_Framework_TestCase {
                     ),
                     'shipping_method' => 'flatrate_flatrate',
                     'payment_method' => array(
-                            "method" => "authorizenet",
+                            "method" => "ccsave",
                             "cc_type" => "VI",
                             "cc_owner" => "David Tay",
                             "cc_number" => "4111111111111111",
@@ -240,26 +244,30 @@ class FrontTest extends PHPUnit_Framework_TestCase {
              
             $response = curl_exec($ch);
         
-            $params = json_decode($response, true);
+            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            $header = substr($response, 0, $header_size);
+            $body = substr($response, $header_size);
             
+            $params = json_decode($body, true);
+                        
             curl_close($ch);
              
             $gotLocation = (is_array($params) && isset($params['Location']) && $params['Location']) ? true : false;
                     
             $this->assertTrue($gotLocation);    
         
-            $orderStatusUrl = $location;
+            $orderStatusUrl = $params['Location'];
         
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $orderStatusUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
             $response = curl_exec($ch);
-        
-            curl_close($ch);
-        
+            
             $params = json_decode($response, true);
-        
+            
+            curl_close($ch);
+                
             $gotStatus = ($params['status'] == 'processing' || $params['status'] == 'pending') ? true : false;
         
             $this->assertTrue($gotStatus);

@@ -51,7 +51,7 @@ class Aydus_CustomConfigurable_Model_Resource_Setup extends Mage_Eav_Model_Entit
 	{
 	    //install app
 	    $consumer = Mage::getModel('oauth/consumer');
-	    $consumer->load('Custom Case API', 'name');
+	    $consumer->load('Custom Configurable API', 'name');
 	    
 	    if (!$consumer->getId()){
 	    
@@ -60,7 +60,7 @@ class Aydus_CustomConfigurable_Model_Resource_Setup extends Mage_Eav_Model_Entit
 	            $helper = Mage::helper('oauth');
 	    
 	            $data = array(
-	                    'name' => 'Custom Case API',
+	                    'name' => 'Custom Configurable API',
 	                    'key'  => $helper->generateConsumerKey(),
 	                    'secret' => $helper->generateConsumerSecret(),
 	                    'callback_url' => 'http://'.$_SERVER['HTTP_HOST'].'/',

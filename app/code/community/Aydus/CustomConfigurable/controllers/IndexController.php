@@ -89,7 +89,7 @@ class Aydus_CustomConfigurable_IndexController extends Mage_Core_Controller_Fron
                 
                 if ($code && $filename && $imageData){
                     
-                    $result = $model->uploadPhoto($code, $filename, $imageData);
+                    $result = $model->uploadPhoto($code, $filename, $imageData, (is_array($_FILES) && count($_FILES)>0)?false:true);
                     
                     if (!$result['error']){
                         
@@ -155,9 +155,9 @@ class Aydus_CustomConfigurable_IndexController extends Mage_Core_Controller_Fron
                 
                         $result = $model->addToCart($data);
                         
-                        if ($result['error']){
+                        if (!$result['error']){
                             
-                            $quoteUrl = $result['data'];
+                            $quoteUrl = Mage::getUrl('customconfigurable/index/quote/hash/'.$result['data']);
                             $result = array('Location' => $quoteUrl);
                         }
                     }
@@ -210,7 +210,7 @@ class Aydus_CustomConfigurable_IndexController extends Mage_Core_Controller_Fron
                 //json post
                 if ($postBody = file_get_contents('php://input')){
                 
-                    $data = (array)json_decode($postBody);
+                    $data = (array)json_decode($postBody, true);
                 
                 } else {
                 
@@ -226,7 +226,7 @@ class Aydus_CustomConfigurable_IndexController extends Mage_Core_Controller_Fron
                     
                     if (!$result['error']){
                         
-                        $orderUrl = $result['data'];
+                        $orderUrl = Mage::getUrl('customconfigurable/index/order/id/'.$result['data']);
                         $result = array('Location' => $orderUrl);
                     }
                 

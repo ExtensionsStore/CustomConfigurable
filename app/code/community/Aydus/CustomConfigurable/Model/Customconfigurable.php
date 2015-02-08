@@ -619,9 +619,16 @@ class Aydus_CustomConfigurable_Model_Customconfigurable extends Mage_Core_Model_
             
             $time = time();
             $uploadFilePath = $uploadDir.DS.$time.'-'.$filename;
-            copy($quoteFilePath, $uploadFilePath);            
             
-            $result['data'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'aydus'.DS.'customconfigurable'.$dispersion.DS.$time.'-'.$filename;
+            if (copy($quoteFilePath, $uploadFilePath)){
+                
+                $result['data'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'aydus'.DS.'customconfigurable'.$dispersion.DS.$time.'-'.$filename;
+                
+            } else {
+                
+                $result['error'] = true;
+                $result['data'] = 'Could not copy uploaded image to '.$uploadFilePath.'; check permissions';
+            }
             
         }
 

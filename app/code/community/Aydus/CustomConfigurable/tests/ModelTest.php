@@ -57,7 +57,7 @@ class ModelTest extends PHPUnit_Framework_TestCase {
         if (!$result['error']){
             self::$_photoUrl = $result['data'];
         }
-        
+                
         $this->assertFalse($result['error']);
         
         $imageFile = 'invalidImage.jpg';
@@ -97,7 +97,7 @@ class ModelTest extends PHPUnit_Framework_TestCase {
             $result = $this->_model->addToCart($data); 
             
             $this->assertFalse($result['error']);
-            
+                        
             $hash = $result['data'];
             
             $result = $this->_model->getQuote($hash);

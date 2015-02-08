@@ -24,7 +24,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
         
         $consumer = Mage::getModel('oauth/consumer');
-        $consumer->load('Custom Case API', 'name');
+        $consumer->load('Custom Configurable API', 'name');
         
         $this->_consumer = $consumer;
         $this->_key = $consumer->getKey();
@@ -189,7 +189,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
             $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
             $headerStr = substr($response, 0, $headerSize);
             $headersAr = Mage::helper('aydus_customconfigurable')->getHeadersArray($headerStr);
-            
+                        
             curl_close($ch);
              
             $gotLocation  = false;
@@ -285,7 +285,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
                     ),
                     'shipping_method' => 'flatrate_flatrate',
                     'payment_method' => array(
-                            "method" => "authorizenet",
+                            "method" => "ccsave",
                             "cc_type" => "VI",
                             "cc_owner" => "David Tay",
                             "cc_number" => "4111111111111111",
@@ -311,7 +311,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
              
             $response = curl_exec($ch);
-            
+                        
             $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
             $headerStr = substr($response, 0, $headerSize);
             $headersAr = Mage::helper('aydus_customconfigurable')->getHeadersArray($headerStr);
