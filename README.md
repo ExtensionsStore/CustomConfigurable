@@ -4,6 +4,13 @@ Custom Configurable
 Access configurable products over the Magento API. There are endpoints for the Magento REST API
 and the frontend.
 
+Description
+-----------
+Create a configurable product, set its options and associated products. Then access that product
+and options over the Magento API. Facilitates creating mobile apps for specific products on your 
+Magento website. Lets your user upload photos using the API and add the product to the cart and
+checkout.
+
 Installation
 ------------
 Upload all the files to the root of your Magento site. Let the setup scripts run.
