@@ -12,6 +12,7 @@
     <modules>
         <Aydus_CustomConfigurable>
             <version>0.9.0</version>
+            <magento>1.7</magento>
         </Aydus_CustomConfigurable>
     </modules>
     <frontend>
