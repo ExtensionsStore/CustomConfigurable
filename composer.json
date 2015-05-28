@@ -1,0 +1,18 @@
+{
+    "name": "aydus/customconfigurable",
+    "license": "GPL-3.0",
+    "type": "magento-module",
+    "description": "Access configurable products over the Magento API.",
+    "homepage": "https://github.com/aydus/CustomConfigurable.git",
+    "require": {
+        "php": ">=5.3",
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors": [
+        {
+            "name": "David Tay",
+            "email": "davidt@aydus.com",
+            "role": "Author/Maintainer"
+        }
+    ]
+}
